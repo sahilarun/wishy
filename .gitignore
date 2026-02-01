@@ -1,0 +1,12 @@
+build/
+target/
+*.img
+*.bin
+*.o
+*.a
+*.so
+*.elf
+*.swp
+*.swo
+*~
+.DS_Store

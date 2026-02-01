@@ -1,0 +1,27 @@
+c[?7l[2J[0mSeaBIOS (version 1.16.3-debian-1.16.3-2)
+
+
+iPXE (https://ipxe.org) 00:03.0 CA00 PCI2.10 PnP PMM+06FCAF60+06F0AF60 CA00
+Press Ctrl-B to configure iPXE (PCI 00:03.0)...                                                                               
+
+
+Booting from Hard Disk...
+Boot failed: not a bootable disk
+
+Booting from Floppy...
+Boot failed: could not read the boot disk
+
+Booting from DVD/CD...
+Boot failed: Could not read from CDROM (code 0003)
+Booting from ROM...
+iPXE (PCI 00:03.0) starting execution...ok
+iPXE initialising devices...ok
+
+
+
+[0;1miPXE 1.21.1+git-20220113.fbbdc3926-0ubuntu2[0m -- Open Source Network Boot Firmware
+ -- [0;36mhttps://ipxe.org
+[0mFeatures: DNS HTTP HTTPS iSCSI NFS TFTP VLAN AoE ELF MBOOT PXE bzImage Menu PXEX
+T
+
+Press Ctrl-B for the iPXE command line...
