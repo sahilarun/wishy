@@ -1,6 +1,5 @@
 #![no_std]
 #![no_main]
-#![feature(lang_items)]
 
 mod utils;
 
@@ -11,8 +10,14 @@ fn panic(_info: &PanicInfo) -> ! {
     loop {}
 }
 
-#[lang = "eh_personality"]
-extern "C" fn eh_personality() {}
+// Provide memset for compiler-generated code
+// This C-compatible function is called by LLVM-generated code for memory initialization.
+// Safety: The caller must ensure `s` is valid for writes of at least `n` bytes.
+#[no_mangle]
+pub unsafe extern "C" fn memset(s: *mut u8, c: i32, n: usize) -> *mut u8 {
+    core::ptr::write_bytes(s, c as u8, n);
+    s
+}
 
 #[no_mangle]
 pub extern "C" fn _start() -> ! {
