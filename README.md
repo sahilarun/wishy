@@ -18,10 +18,25 @@ clearly marked as work in progress.
 ## Overview
 
 - Installation
+- Downloads
 - Usage
 - Examples
 - Architecture
 - File Structure
+
+## Downloads
+
+Pre-built disk images are available from the 
+[Releases](https://github.com/sahilarun/wishy/releases) page.
+
+To create a new release, push a version tag:
+```shell
+git tag v0.1.0
+git push origin v0.1.0
+```
+
+This will trigger the GitHub Actions workflow to build and publish the release
+with the bootable disk image.
 
 ## Installation
 
