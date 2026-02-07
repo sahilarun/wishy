@@ -36,7 +36,7 @@ kernel: $(KERNEL_BIN)
 $(KERNEL_BIN): $(BUILD_DIR)
 	$(ASM) -f elf32 $(KERNEL_DIR)/entry.asm -o $(BUILD_DIR)/entry.o
 	$(ASM) -f elf32 $(KERNEL_DIR)/interrupts.asm -o $(BUILD_DIR)/interrupts.o
-	cd $(KERNEL_DIR)/rust && $(RUSTC) build --release --target i686-unknown-none.json -Z build-std=core,alloc
+	cd $(KERNEL_DIR)/rust && $(RUSTC) build --release --target i686-unknown-none.json -Z build-std=core,alloc -Z json-target-spec
 	$(LD) -m elf_i386 -T $(KERNEL_DIR)/linker.ld -o $(BUILD_DIR)/kernel.elf \
 		$(BUILD_DIR)/entry.o \
 		$(BUILD_DIR)/interrupts.o \
