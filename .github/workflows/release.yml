@@ -72,8 +72,7 @@ jobs:
               -m 256M -serial stdio -vga std
             ```
 
-            For more information, see the \
-            [README](https://github.com/sahilarun/wishy/blob/main/README.md).
+            For more information, see the [README](https://github.com/sahilarun/wishy/blob/main/README.md).
           draft: false
           prerelease: false
         env:
