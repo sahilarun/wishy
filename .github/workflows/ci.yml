@@ -1,0 +1,55 @@
+name: CI Build
+
+on:
+  push:
+    branches: [ main, dev, copilot/** ]
+  pull_request:
+    branches: [ main, dev ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y nasm gcc build-essential gcc-multilib git e2fsprogs
+      
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@nightly
+        with:
+          components: rust-src
+      
+      - name: Install Rust targets
+        run: rustup target add i686-unknown-linux-musl
+      
+      - name: Cache Rust dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            kernel/rust/target/
+            user/target/
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+      
+      - name: Build wishy OS
+        run: make all
+      
+      - name: Verify disk image was created
+        run: |
+          if [ -f build/wishy.img ]; then
+            echo "✓ Disk image built successfully"
+            ls -lh build/wishy.img
+          else
+            echo "✗ Disk image not found"
+            exit 1
+          fi
